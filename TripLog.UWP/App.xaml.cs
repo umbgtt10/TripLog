@@ -52,6 +52,7 @@ namespace TripLog.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                Xamarin.FormsMaps.Init("Token to be added later!");
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
