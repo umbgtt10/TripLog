@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TripLog.Models;
+﻿using System.ComponentModel;
+using TripLog.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
-using Xamarin.Forms.Xaml;
 
 namespace TripLog
 {
@@ -16,23 +10,30 @@ namespace TripLog
     [DesignTimeVisible(false)]
     public partial class DetailPage : ContentPage
     {
-        public DetailPage(TripLogEntry entry)
+        public DetailPageViewModel Vm 
+        {
+            get
+            {
+                return (DetailPageViewModel)BindingContext;
+            }
+        }
+
+        public DetailPage(DetailPageViewModel vm)
         {
             InitializeComponent();
 
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(entry.Latitude, entry.Longitude), Distance.FromMiles(.5)));
+            BindingContext = vm;
+
+            var position = new Position(vm.Entry.Latitude, vm.Entry.Longitude);
+
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.5)));
 
             map.Pins.Add(new Pin
             {
                 Type = PinType.Place,
-                Label = entry.Title,
-                Position = new Position(entry.Latitude, entry.Longitude)
+                Label = vm.Entry.Title,
+                Position = position
             });
-
-            title.Text = entry.Title;
-            date.Text = entry.Date.ToString("M");
-            rating.Text = $"{entry.Rating} star rating";
-            notes.Text = entry.Notes;
         }
     }
 }

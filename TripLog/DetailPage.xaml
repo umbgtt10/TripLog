@@ -17,10 +17,10 @@
             <BoxView Grid.Row="1" BackgroundColor="White" Opacity=".8" />
 
             <StackLayout Padding="10" Grid.Row="1">
-                <Label x:Name="title" HorizontalOptions="Center" />
-                <Label x:Name="date" HorizontalOptions="Center" />
-                <Label x:Name="rating" HorizontalOptions="Center" />
-                <Label x:Name="notes" HorizontalOptions="Center" />
+                <Label Text="{Binding Entry.Title}" HorizontalOptions="Center" />
+                <Label Text="{Binding Entry.Date}" HorizontalOptions="Center" />
+                <Label Text="{Binding Entry.Rating}" HorizontalOptions="Center" />
+                <Label Text="{Binding Entry.Notes}" HorizontalOptions="Center" />
             </StackLayout>
         </Grid>
 

@@ -3,13 +3,14 @@
              x:Class="TripLog.MainPage"
              Title="TripLog">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="New" Clicked="NewClicked"/>
+        <ToolbarItem Text="New" Command="{Binding NewCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView x:Name="trips" ItemTapped="Trips_ItemTapped">
+        <ListView ItemsSource="{Binding Entries}" 
+                  SelectedItem="{Binding DetailSelectedItem, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" Detail="{Binding Notes}" />
+                    <TextCell Text="{Binding Title}" Detail="{Binding Notes}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
