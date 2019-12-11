@@ -7,7 +7,7 @@
              x:Class="TripLog.NewEntryPage"
              Title="New Entry">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" />
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
 

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using TripLog.Models;
+﻿using System.ComponentModel;
 using TripLog.ViewModels;
-using TripLog.Views;
 using Xamarin.Forms;
 
 namespace TripLog

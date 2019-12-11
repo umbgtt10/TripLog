@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows.Input;
 using TripLog.Models;
+using Xamarin.Forms;
 
 namespace TripLog.ViewModels
 {
@@ -22,6 +24,21 @@ namespace TripLog.ViewModels
             }
         }
 
+        private ICommand backCommand;
+
+        public ICommand BackCommand
+        {
+            get
+            {
+                if(backCommand == null)
+                {
+                    backCommand = new Command(BackProcedure);
+                }
+
+                return backCommand;
+            }
+        }
+
         public override void Init(TripLogEntry entry)
         {
             this.Entry = entry;
@@ -30,6 +47,11 @@ namespace TripLog.ViewModels
         public override void Init()
         {
             throw new NotImplementedException();
+        }
+
+        private void BackProcedure()
+        {
+            // Move back to the main page!
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TripLog.ViewModels
             {
                 return entries;
             }
-            private set
+            set
             {
                 if(entries != value)
                 {
@@ -62,7 +62,7 @@ namespace TripLog.ViewModels
             }
         }
 
-        private TripLogFactory factory;
+        private readonly TripLogFactory factory;
 
         public MainPageViewModel(TripLogFactory factory)
         {
@@ -80,6 +80,21 @@ namespace TripLog.ViewModels
         }
 
         public override void Init()
+        {
+            // Pull list from the backend....
+            // Then removed the hard-coded list....
+
+            var hardCodedList = GetHardCodedList();
+
+            Entries = new ObservableCollection<TripLogEntry>(hardCodedList);
+        }
+
+        public override void Init(TripLogEntry entry)
+        {
+            throw new NotImplementedException();
+        }
+
+        private IList<TripLogEntry> GetHardCodedList()
         {
             var items = new List<TripLogEntry>
             {
@@ -112,12 +127,7 @@ namespace TripLog.ViewModels
                 }
             };
 
-            Entries = new ObservableCollection<TripLogEntry>(items);
-        }
-
-        public override void Init(TripLogEntry entry)
-        {
-            throw new NotImplementedException();
+            return items;
         }
     }
 }

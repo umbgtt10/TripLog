@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows.Input;
 using TripLog.Models;
+using Xamarin.Forms;
 
 namespace TripLog.ViewModels
 {
@@ -12,7 +14,7 @@ namespace TripLog.ViewModels
             {
                 return notes;
             }
-            private set
+            set
             {
                 if(notes != value)
                 {
@@ -29,12 +31,13 @@ namespace TripLog.ViewModels
             {
                 return title;
             }
-            private set
+            set
             {
                 if (title != value)
                 {
                     title = value;
                     Notify(nameof(Title));
+                    SaveCommand.ChangeCanExecute();
                 }
             }
         }
@@ -46,7 +49,7 @@ namespace TripLog.ViewModels
             {
                 return rating;
             }
-            private set
+            set
             {
                 if (rating != value)
                 {
@@ -63,7 +66,7 @@ namespace TripLog.ViewModels
             {
                 return latitude;
             }
-            private set
+            set
             {
                 if (latitude != value)
                 {
@@ -80,7 +83,7 @@ namespace TripLog.ViewModels
             {
                 return longitude;
             }
-            private set
+            set
             {
                 if (longitude != value)
                 {
@@ -97,7 +100,7 @@ namespace TripLog.ViewModels
             {
                 return date;
             }
-            private set
+            set
             {
                 if (date != value)
                 {
@@ -105,6 +108,23 @@ namespace TripLog.ViewModels
                     Notify(nameof(Date));
                 }
             }
+        }
+
+        private Command saveCommand;
+        public Command SaveCommand
+        { 
+            get
+            {
+                if (saveCommand == null)
+                {
+                    saveCommand = new Command(
+                      SaveProcedure,
+                      CanSaveCommandBeExecuted);
+                }
+
+                return saveCommand;
+            }
+            set => saveCommand = value;
         }
 
         public override void Init(TripLogEntry entry)
@@ -115,6 +135,18 @@ namespace TripLog.ViewModels
         public override void Init()
         {
             throw new NotImplementedException();
+        }
+
+        private void SaveProcedure()
+        {
+            // Store new entry!
+
+            // Move to the main page!
+        }
+
+        private bool CanSaveCommandBeExecuted()
+        {
+            return !string.IsNullOrEmpty(Title);
         }
     }
 }

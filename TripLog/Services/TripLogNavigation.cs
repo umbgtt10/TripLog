@@ -5,7 +5,7 @@ namespace TripLog.Services
 {
     public class TripLogNavigation : ITripLogNavigation
     {
-        private INavigation navigation;
+        private readonly INavigation navigation;
 
         public TripLogNavigation(INavigation navigation)
         {

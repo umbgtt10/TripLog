@@ -3,6 +3,9 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="TripLog.DetailPage"
              Title="Details">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Command="{Binding MoveBack}" />
+    </ContentPage.ToolbarItems>    
     <ContentPage.Content>
 
         <Grid>
