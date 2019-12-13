@@ -7,7 +7,7 @@ namespace TripLog.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Notify(string propertyName)
+        public void NotifyPropertyChanged(string propertyName)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

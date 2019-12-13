@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Input;
 using TripLog.Models;
+using TripLog.Services;
 using Xamarin.Forms;
 
 namespace TripLog.ViewModels
@@ -19,7 +19,7 @@ namespace TripLog.ViewModels
                 if(notes != value)
                 {
                     notes = value;
-                    Notify(nameof(Notes));
+                    NotifyPropertyChanged(nameof(Notes));
                 }
             }
         }
@@ -36,7 +36,7 @@ namespace TripLog.ViewModels
                 if (title != value)
                 {
                     title = value;
-                    Notify(nameof(Title));
+                    NotifyPropertyChanged(nameof(Title));
                     SaveCommand.ChangeCanExecute();
                 }
             }
@@ -54,7 +54,7 @@ namespace TripLog.ViewModels
                 if (rating != value)
                 {
                     rating = value;
-                    Notify(nameof(Rating));
+                    NotifyPropertyChanged(nameof(Rating));
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace TripLog.ViewModels
                 if (latitude != value)
                 {
                     latitude = value;
-                    Notify(nameof(Latitude));
+                    NotifyPropertyChanged(nameof(Latitude));
                 }
             }
         }
@@ -88,13 +88,13 @@ namespace TripLog.ViewModels
                 if (longitude != value)
                 {
                     longitude = value;
-                    Notify(nameof(Longitude));
+                    NotifyPropertyChanged(nameof(Longitude));
                 }
             }
         }
 
-        private double date;
-        public double Date
+        private DateTime date;
+        public DateTime Date
         {
             get
             {
@@ -105,7 +105,7 @@ namespace TripLog.ViewModels
                 if (date != value)
                 {
                     date = value;
-                    Notify(nameof(Date));
+                    NotifyPropertyChanged(nameof(Date));
                 }
             }
         }
@@ -127,6 +127,13 @@ namespace TripLog.ViewModels
             set => saveCommand = value;
         }
 
+        private readonly ITripLogNavigation tripLogNavigation;
+
+        public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation)
+        {
+            this.tripLogNavigation = tripLogNavigation;
+        }
+
         public override void Init(TripLogEntry entry)
         {
             throw new NotImplementedException();
@@ -139,9 +146,11 @@ namespace TripLog.ViewModels
 
         private void SaveProcedure()
         {
+            this.Date = DateTime.Now;
+
             // Store new entry!
 
-            // Move to the main page!
+            this.tripLogNavigation.PopAsync();
         }
 
         private bool CanSaveCommandBeExecuted()

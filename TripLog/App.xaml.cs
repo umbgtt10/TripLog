@@ -36,7 +36,7 @@ namespace TripLog
             var mainPage = new MainPage();
             var tripLogNavigation = new TripLogNavigation(mainPage.Navigation);
             var viewFactory = new ViewFactory();
-            var viewModelFactory = new ViewModelFactory();
+            var viewModelFactory = new ViewModelFactory(tripLogNavigation);
             var factory = new TripLogFactory(viewFactory, viewModelFactory, tripLogNavigation);
             var vm = new MainPageViewModel(factory);
             mainPage.SetViewModel(vm);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using TripLog.Models;
+using TripLog.Services;
 using Xamarin.Forms;
 
 namespace TripLog.ViewModels
@@ -19,7 +20,7 @@ namespace TripLog.ViewModels
                 if (value != entry)
                 {
                     entry = value;
-                    Notify(nameof(Entry));
+                    NotifyPropertyChanged(nameof(Entry));
                 }
             }
         }
@@ -39,6 +40,13 @@ namespace TripLog.ViewModels
             }
         }
 
+        private readonly ITripLogNavigation tripLogNavigation;
+
+        public DetailPageViewModel(ITripLogNavigation tripLogNavigation)
+        {
+            this.tripLogNavigation = tripLogNavigation;
+        }
+
         public override void Init(TripLogEntry entry)
         {
             this.Entry = entry;
@@ -51,7 +59,7 @@ namespace TripLog.ViewModels
 
         private void BackProcedure()
         {
-            // Move back to the main page!
+            this.tripLogNavigation.PopAsync();
         }
     }
 }

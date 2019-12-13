@@ -4,7 +4,7 @@
              x:Class="TripLog.DetailPage"
              Title="Details">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Back" Command="{Binding MoveBack}" />
+        <ToolbarItem Text="Back" Command="{Binding BackCommand}" />
     </ContentPage.ToolbarItems>    
     <ContentPage.Content>
 

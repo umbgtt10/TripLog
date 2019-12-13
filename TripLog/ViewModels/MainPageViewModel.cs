@@ -23,7 +23,7 @@ namespace TripLog.ViewModels
                 if(entries != value)
                 {
                     entries = value;
-                    Notify(nameof(Entries));
+                    NotifyPropertyChanged(nameof(Entries));
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace TripLog.ViewModels
         public override void Init()
         {
             // Pull list from the backend....
-            // Then removed the hard-coded list....
+            // Then remove the hard-coded list....
 
             var hardCodedList = GetHardCodedList();
 
