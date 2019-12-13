@@ -25,6 +25,7 @@ namespace TripLog.Views
         {
             var vm = this.viewModelFactory.BuildNewEntryPageViewModel();
             var page = this.viewFactory.BuildNewPage(vm);
+            vm.Init();
             return navigation.PushAsync(page);
         }
 

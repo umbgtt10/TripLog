@@ -1,5 +1,4 @@
 ﻿using System;
-using TripLog.Models;
 using TripLog.Services;
 using Xamarin.Forms;
 
@@ -134,20 +133,15 @@ namespace TripLog.ViewModels
             this.tripLogNavigation = tripLogNavigation;
         }
 
-        public override void Init(TripLogEntry entry)
+        public void Init()
         {
-            throw new NotImplementedException();
-        }
+            this.Date = DateTime.Now;
 
-        public override void Init()
-        {
-            throw new NotImplementedException();
+            this.Rating = 1;
         }
 
         private void SaveProcedure()
         {
-            this.Date = DateTime.Now;
-
             // Store new entry!
 
             this.tripLogNavigation.PopAsync();

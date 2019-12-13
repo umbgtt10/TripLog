@@ -79,7 +79,7 @@ namespace TripLog.ViewModels
             this.factory.NavigateToDetailPage(entry);
         }
 
-        public override void Init()
+        public void Init()
         {
             // Pull list from the backend....
             // Then remove the hard-coded list....
@@ -87,11 +87,6 @@ namespace TripLog.ViewModels
             var hardCodedList = GetHardCodedList();
 
             Entries = new ObservableCollection<TripLogEntry>(hardCodedList);
-        }
-
-        public override void Init(TripLogEntry entry)
-        {
-            throw new NotImplementedException();
         }
 
         private IList<TripLogEntry> GetHardCodedList()

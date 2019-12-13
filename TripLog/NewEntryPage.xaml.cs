@@ -7,7 +7,7 @@ namespace TripLog
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewEntryPage : ContentPage
     {
-        public NewEntryPage(ViewModelBase vm)
+        public NewEntryPage(NewEntryPageViewModel vm)
         {
             BindingContext = vm;
 

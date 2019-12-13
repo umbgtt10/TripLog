@@ -47,14 +47,9 @@ namespace TripLog.ViewModels
             this.tripLogNavigation = tripLogNavigation;
         }
 
-        public override void Init(TripLogEntry entry)
+        public void Init(TripLogEntry entry)
         {
             this.Entry = entry;
-        }
-
-        public override void Init()
-        {
-            throw new NotImplementedException();
         }
 
         private void BackProcedure()

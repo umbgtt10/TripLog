@@ -9,11 +9,11 @@ namespace TripLog
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private ViewModelBase Vm
+        private MainPageViewModel Vm
         {
             get
             {
-                return (ViewModelBase)BindingContext;
+                return (MainPageViewModel)BindingContext;
             }
         }
 
@@ -22,7 +22,7 @@ namespace TripLog
             InitializeComponent();
         }
 
-        public void SetViewModel(ViewModelBase vm)
+        public void SetViewModel(MainPageViewModel vm)
         {
             BindingContext = vm;
         }
