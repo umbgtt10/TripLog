@@ -11,9 +11,7 @@ namespace TripLog
         {
             InitializeComponent();
             
-            var mainPage = BuildMainPage();
-
-            MainPage = new NavigationPage(mainPage);
+            MainPage = BuildMainPage();
         }
 
         protected override void OnStart()
@@ -31,7 +29,7 @@ namespace TripLog
             // Handle when your app resumes
         }
 
-        private MainPage BuildMainPage()
+        private NavigationPage BuildMainPage()
         {
             var mainPage = new MainPage();
             var tripLogNavigation = new TripLogNavigation(mainPage.Navigation);
@@ -41,7 +39,7 @@ namespace TripLog
             var vm = new MainPageViewModel(factory);
             mainPage.SetViewModel(vm);
 
-            return mainPage;
+            return new NavigationPage(mainPage);
         }
     }
 }
