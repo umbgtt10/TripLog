@@ -3,21 +3,13 @@ using TripLog.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace TripLog
+namespace TripLog.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
     public partial class DetailPage : ContentPage
     {
-        public DetailPageViewModel Vm 
-        {
-            get
-            {
-                return (DetailPageViewModel)BindingContext;
-            }
-        }
-
         public DetailPage(DetailPageViewModel vm)
         {
             InitializeComponent();

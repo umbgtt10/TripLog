@@ -1,6 +1,5 @@
 ﻿using TripLog.Services;
 using TripLog.ViewModels;
-using TripLog.Views;
 using Xamarin.Forms;
 
 namespace TripLog.Views
