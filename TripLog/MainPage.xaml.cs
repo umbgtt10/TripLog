@@ -9,14 +9,6 @@ namespace TripLog
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private MainPageViewModel Vm
-        {
-            get
-            {
-                return (MainPageViewModel)BindingContext;
-            }
-        }
-
         public MainPage()
         {
             InitializeComponent();
@@ -29,7 +21,7 @@ namespace TripLog
 
         protected override void OnAppearing()
         {
-            Vm.Init();
+            ((MainPageViewModel)BindingContext).Init();
         }
     }
 }

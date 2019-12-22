@@ -74,10 +74,10 @@ namespace TripLog.ViewModels
             this.factory.NavigateToNewPage();
         }
 
-        public void DetailProcedure(TripLogEntry entry)
-        {
-            this.factory.NavigateToDetailPage(entry);
-        }
+            public void DetailProcedure(TripLogEntry entry)
+            {
+                this.factory.NavigateToDetailPage(entry);
+            }
 
         public void Init()
         {
