@@ -11,7 +11,7 @@ namespace TripLog.Views
             var mainPage = new MainPage();
             var tripLogNavigation = new TripLogNavigation(mainPage.Navigation);
             var viewFactory = new ViewFactory();
-            var viewModelFactory = new ViewModelFactory(tripLogNavigation);
+            var viewModelFactory = new ViewModelFactory(tripLogNavigation, null); // Fix this...
             var factory = new TripLogFactory(viewFactory, viewModelFactory, tripLogNavigation);
             var vm = new MainPageViewModel(factory);
             mainPage.SetViewModel(vm);

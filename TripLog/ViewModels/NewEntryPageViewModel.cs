@@ -127,6 +127,13 @@ namespace TripLog.ViewModels
         }
 
         private readonly ITripLogNavigation tripLogNavigation;
+        private readonly IGeoLocation geoLocation;
+
+        public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation, IGeoLocation geoLocation)
+        {
+            this.tripLogNavigation = tripLogNavigation;
+            this.geoLocation = geoLocation;
+        }
 
         public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation)
         {
@@ -138,6 +145,13 @@ namespace TripLog.ViewModels
             this.Date = DateTime.Now;
 
             this.Rating = 1;
+
+            /*
+            var coordinates = this.geoLocation.GetCoordinates();
+
+            this.Latitude = coordinates.Latitude;
+            this.Longitude = coordinates.Longitude;
+            */
         }
 
         private void SaveProcedure()

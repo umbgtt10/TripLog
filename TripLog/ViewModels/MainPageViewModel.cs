@@ -20,7 +20,7 @@ namespace TripLog.ViewModels
             }
             set
             {
-                if(entries != value)
+                if (entries != value)
                 {
                     entries = value;
                     NotifyPropertyChanged(nameof(Entries));
@@ -53,7 +53,7 @@ namespace TripLog.ViewModels
             }
             set
             {
-                if(detailSelectItem != value)
+                if (detailSelectItem != value)
                 {
                     detailSelectItem = value;
                     DetailProcedure(detailSelectItem);
@@ -62,9 +62,9 @@ namespace TripLog.ViewModels
             }
         }
 
-        private readonly TripLogFactory factory;
+        private readonly ITripLogFactory factory;
 
-        public MainPageViewModel(TripLogFactory factory)
+        public MainPageViewModel(ITripLogFactory factory)
         {
             this.factory = factory;
         }
@@ -74,10 +74,10 @@ namespace TripLog.ViewModels
             this.factory.NavigateToNewPage();
         }
 
-            public void DetailProcedure(TripLogEntry entry)
-            {
-                this.factory.NavigateToDetailPage(entry);
-            }
+        private void DetailProcedure(TripLogEntry entry)
+        {
+            this.factory.NavigateToDetailPage(entry);
+        }
 
         public void Init()
         {

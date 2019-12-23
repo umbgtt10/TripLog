@@ -2,6 +2,7 @@
 
 namespace TripLog.Models
 {
+
     public class TripLogEntry
     {
         public string Title { get; set; }
