@@ -127,21 +127,20 @@ namespace TripLog.ViewModels
         }
 
         private readonly ITripLogNavigation tripLogNavigation;
-        private readonly IGeoLocation geoLocation;
+        private readonly IGeoLocationService geoLocation;
 
-        public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation, IGeoLocation geoLocation)
+        public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation, IGeoLocationService geoLocation)
         {
             this.tripLogNavigation = tripLogNavigation;
             this.geoLocation = geoLocation;
         }
 
-        public void Init()
+        public async void Init()
         {
             this.Date = DateTime.Now;
-
             this.Rating = 1;
 
-            var coordinates = this.geoLocation.GetCoordinates();
+            var coordinates = await this.geoLocation.GetCoordinatesAsync();
 
             this.Latitude = coordinates.Latitude;
             this.Longitude = coordinates.Longitude;

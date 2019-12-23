@@ -5,9 +5,9 @@ namespace TripLog.ViewModels
     public class ViewModelFactory
     {
         private readonly ITripLogNavigation tripLogNavigation;
-        private readonly IGeoLocation geoLocation;
+        private readonly IGeoLocationService geoLocation;
 
-        public ViewModelFactory(ITripLogNavigation tripLogNavigation, IGeoLocation geoLocation)
+        public ViewModelFactory(ITripLogNavigation tripLogNavigation, IGeoLocationService geoLocation)
         {
             this.tripLogNavigation = tripLogNavigation;
             this.geoLocation = geoLocation;

@@ -11,13 +11,13 @@ namespace TripLog
     public class NewEntryPageViewModelTests
     {
         private readonly Mock<ITripLogNavigation> tripLogNavigation;
-        private readonly Mock<IGeoLocation> geoLocation;
+        private readonly Mock<IGeoLocationService> geoLocation;
         private readonly NewEntryPageViewModel testee;
 
         public NewEntryPageViewModelTests()
         {
             tripLogNavigation = new Mock<ITripLogNavigation>();
-            geoLocation = new Mock<IGeoLocation>();
+            geoLocation = new Mock<IGeoLocationService>();
             testee = new NewEntryPageViewModel(tripLogNavigation.Object, geoLocation.Object);
         }
 
@@ -26,7 +26,7 @@ namespace TripLog
         {
             // Arrange 
             var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
-            geoLocation.Setup(m => m.GetCoordinates()).Returns(expectedCoordinates);
+            geoLocation.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
             
             // Act
             testee.Init();
@@ -36,7 +36,7 @@ namespace TripLog
             Assert.AreEqual(DateTime.Now.Date, testee.Date.Date);
             Assert.AreEqual(expectedCoordinates.Latitude, testee.Latitude);
             Assert.AreEqual(expectedCoordinates.Longitude, testee.Longitude);
-            geoLocation.Verify(m => m.GetCoordinates(), Times.Once);
+            geoLocation.Verify(m => m.GetCoordinatesAsync(), Times.Once);
         }
 
         [TestMethod]

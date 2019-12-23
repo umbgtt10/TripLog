@@ -1,4 +1,5 @@
-﻿using TripLog.Views;
+﻿using Ninject.Modules;
+using TripLog.Views;
 using Xamarin.Forms;
 
 namespace TripLog
@@ -7,11 +8,11 @@ namespace TripLog
     {
         private readonly TripLogMainPageFactory factory;
 
-        public App()
+        public App(params INinjectModule[] platformModules)
         {
             InitializeComponent();
 
-            factory = new TripLogMainPageFactory();
+            factory = new TripLogMainPageFactory(platformModules);
 
             MainPage = factory.BuildMainPage();
         }
