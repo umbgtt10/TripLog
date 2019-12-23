@@ -135,23 +135,16 @@ namespace TripLog.ViewModels
             this.geoLocation = geoLocation;
         }
 
-        public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation)
-        {
-            this.tripLogNavigation = tripLogNavigation;
-        }
-
         public void Init()
         {
             this.Date = DateTime.Now;
 
             this.Rating = 1;
 
-            /*
             var coordinates = this.geoLocation.GetCoordinates();
 
             this.Latitude = coordinates.Latitude;
             this.Longitude = coordinates.Longitude;
-            */
         }
 
         private void SaveProcedure()

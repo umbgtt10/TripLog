@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using TripLog.Models;
 using TripLog.Services;
 using TripLog.ViewModels;
 
@@ -10,23 +11,32 @@ namespace TripLog
     public class NewEntryPageViewModelTests
     {
         private readonly Mock<ITripLogNavigation> tripLogNavigation;
+        private readonly Mock<IGeoLocation> geoLocation;
         private readonly NewEntryPageViewModel testee;
 
         public NewEntryPageViewModelTests()
         {
             tripLogNavigation = new Mock<ITripLogNavigation>();
-            testee = new NewEntryPageViewModel(tripLogNavigation.Object);
+            geoLocation = new Mock<IGeoLocation>();
+            testee = new NewEntryPageViewModel(tripLogNavigation.Object, geoLocation.Object);
         }
 
         [TestMethod]
         public void Init_SetsAttributes()
         {
-            // Arrange & Act
+            // Arrange 
+            var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
+            geoLocation.Setup(m => m.GetCoordinates()).Returns(expectedCoordinates);
+            
+            // Act
             testee.Init();
 
             // Assert
             Assert.AreEqual(1, testee.Rating);
             Assert.AreEqual(DateTime.Now.Date, testee.Date.Date);
+            Assert.AreEqual(expectedCoordinates.Latitude, testee.Latitude);
+            Assert.AreEqual(expectedCoordinates.Longitude, testee.Longitude);
+            geoLocation.Verify(m => m.GetCoordinates(), Times.Once);
         }
 
         [TestMethod]
