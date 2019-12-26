@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Modules;
+using System;
 using TripLog.Services;
 using TripLog.ViewModels;
 using Xamarin.Forms;
@@ -23,9 +24,11 @@ namespace TripLog.Views
             var mainPage = new MainPage();
             var tripLogNavigation = new TripLogNavigation(mainPage.Navigation);
             var viewFactory = new ViewFactory();
-            var viewModelFactory = new ViewModelFactory(tripLogNavigation, locationService);
+            var httpClient = new StandardAsyncHttpClient();
+            var tripLogDataService = new RestTripLogDataService(httpClient, new Uri("http://192.168.1.21:10080/Api/TripLog"));
+            var viewModelFactory = new ViewModelFactory(tripLogNavigation, locationService, tripLogDataService);
             var factory = new TripLogFactory(viewFactory, viewModelFactory, tripLogNavigation);
-            var vm = new MainPageViewModel(factory);
+            var vm = new MainPageViewModel(factory, tripLogDataService);
             mainPage.SetViewModel(vm);
 
             return new NavigationPage(mainPage);

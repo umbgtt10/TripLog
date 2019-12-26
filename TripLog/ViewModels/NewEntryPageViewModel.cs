@@ -1,4 +1,5 @@
 ﻿using System;
+using TripLog.Models;
 using TripLog.Services;
 using Xamarin.Forms;
 
@@ -128,11 +129,16 @@ namespace TripLog.ViewModels
 
         private readonly ITripLogNavigation tripLogNavigation;
         private readonly IGeoLocationService geoLocation;
+        private readonly ITripLogDataService tripLogDataService;
 
-        public NewEntryPageViewModel(ITripLogNavigation tripLogNavigation, IGeoLocationService geoLocation)
+        public NewEntryPageViewModel(
+            ITripLogNavigation tripLogNavigation,
+            IGeoLocationService geoLocation,
+            ITripLogDataService tripLogDataService)
         {
             this.tripLogNavigation = tripLogNavigation;
             this.geoLocation = geoLocation;
+            this.tripLogDataService = tripLogDataService;
         }
 
         public async void Init()
@@ -148,7 +154,17 @@ namespace TripLog.ViewModels
 
         private void SaveProcedure()
         {
-            // Store new entry!
+            var newEntry = new TripLogEntry()
+            {
+                Title = Title,
+                Longitude = Longitude,
+                Latitude = Latitude,
+                Rating = Rating,
+                Notes = Notes,
+                Date = Date
+            };
+
+            this.tripLogDataService.AddEntryAsync(newEntry);
 
             this.tripLogNavigation.PopAsync();
         }

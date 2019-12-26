@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TripLog.Models;
+using TripLog.Services;
 using TripLog.Views;
 using Xamarin.Forms;
 
@@ -63,10 +62,12 @@ namespace TripLog.ViewModels
         }
 
         private readonly ITripLogFactory factory;
+        private readonly ITripLogDataService tripLogDataService;
 
-        public MainPageViewModel(ITripLogFactory factory)
+        public MainPageViewModel(ITripLogFactory factory, ITripLogDataService tripLogDataService)
         {
             this.factory = factory;
+            this.tripLogDataService = tripLogDataService;
         }
 
         private void NewProcedure()
@@ -79,50 +80,11 @@ namespace TripLog.ViewModels
             this.factory.NavigateToDetailPage(entry);
         }
 
-        public void Init()
+        public async void Init()
         {
-            // Pull list from the backend....
-            // Then remove the hard-coded list....
+            var entries = await this.tripLogDataService.ReadAllEntriesAsync();
 
-            var hardCodedList = GetHardCodedList();
-
-            Entries = new ObservableCollection<TripLogEntry>(hardCodedList);
-        }
-
-        private IList<TripLogEntry> GetHardCodedList()
-        {
-            var items = new List<TripLogEntry>
-            {
-                new TripLogEntry
-                {
-                    Title = "Washington Monument",
-                    Notes = "Amazing!",
-                    Rating = 3,
-                    Date = new DateTime(2017, 2, 5),
-                    Latitude = 38.8895,
-                    Longitude = -77.0352
-                },
-                new TripLogEntry
-                {
-                    Title = "Statue of Liberty",
-                    Notes = "Inspiring!",
-                    Rating = 4,
-                    Date = new DateTime(2017, 4, 13),
-                    Latitude = 40.6892,
-                    Longitude = -74.0444
-                },
-                new TripLogEntry
-                {
-                    Title = "Golden Gate Bridge",
-                    Notes = "Foggy, but beautiful.",
-                    Rating = 5,
-                    Date = new DateTime(2017, 4, 26),
-                    Latitude = 37.8268,
-                    Longitude = -122.4798
-                }
-            };
-
-            return items;
+            Entries = new ObservableCollection<TripLogEntry>(entries);
         }
     }
 }

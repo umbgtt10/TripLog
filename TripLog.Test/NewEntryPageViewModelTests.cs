@@ -12,13 +12,15 @@ namespace TripLog
     {
         private readonly Mock<ITripLogNavigation> tripLogNavigation;
         private readonly Mock<IGeoLocationService> geoLocation;
+        private readonly Mock<ITripLogDataService> dataService;
         private readonly NewEntryPageViewModel testee;
 
         public NewEntryPageViewModelTests()
         {
             tripLogNavigation = new Mock<ITripLogNavigation>();
             geoLocation = new Mock<IGeoLocationService>();
-            testee = new NewEntryPageViewModel(tripLogNavigation.Object, geoLocation.Object);
+            dataService = new Mock<ITripLogDataService>();
+            testee = new NewEntryPageViewModel(tripLogNavigation.Object, geoLocation.Object, dataService.Object);
         }
 
         [TestMethod]
@@ -43,12 +45,15 @@ namespace TripLog
         public void SaveCommandFired_TitleSet_CallsNavigate()
         {
             // Arrange
-            testee.Title = "Location";
+            var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
+            geoLocation.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
+            testee.Init();
 
             // Act
             testee.SaveCommand.Execute(null);
 
             // Assert
+            dataService.Verify(m => m.AddEntryAsync(It.IsAny<TripLogEntry>()), Times.Once);
             tripLogNavigation.Verify(m => m.PopAsync(), Times.Once);
         }
     }
