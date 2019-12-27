@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
 using TripLog.Models;
 using TripLog.Services;
 using TripLog.ViewModels;
@@ -40,6 +41,25 @@ namespace TripLog
             // Assert
             tripLogFactoryMock.Verify(m => m.NavigateToNewPage(), Times.Once);
             tripLogFactoryMock.Verify(m => m.NavigateToDetailPage(It.IsAny<TripLogEntry>()), Times.Never);
+        }
+
+        [TestMethod]
+        public void DeleteCommandFired_CallsDelete()
+        {
+            // Arrange
+            var expectedEntry = new TripLogEntry()
+            {
+                Title = "Title",
+            };
+            tripLogDataServiceMock.Setup(m => m.ReadAllEntriesAsync()).ReturnsAsync(new List<TripLogEntry> { expectedEntry });
+            testee.Init();
+
+            // Act
+            testee.DeleteCommand.Execute(expectedEntry);
+
+            // Assert
+            tripLogDataServiceMock.Verify(m => m.DeleteEntryAsync(expectedEntry));
+            Assert.AreEqual(0, testee.Entries.Count);
         }
 
         [TestMethod]

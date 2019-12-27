@@ -42,6 +42,21 @@ namespace TripLog.ViewModels
             }
         }
 
+        private ICommand deleteCommand;
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                if (deleteCommand == null)
+                {
+                    deleteCommand = new Command<TripLogEntry>(DeleteProcedure);
+                }
+
+                return deleteCommand;
+            }
+        }
+
         private TripLogEntry detailSelectItem;
 
         public TripLogEntry DetailSelectedItem
@@ -73,6 +88,13 @@ namespace TripLog.ViewModels
         private void NewProcedure()
         {
             this.factory.NavigateToNewPage();
+        }
+
+        private void DeleteProcedure(TripLogEntry entry)
+        {
+            this.tripLogDataService.DeleteEntryAsync(entry);
+
+            Entries.Remove(entry);
         }
 
         private void DetailProcedure(TripLogEntry entry)

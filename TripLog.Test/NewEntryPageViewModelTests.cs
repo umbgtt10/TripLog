@@ -10,17 +10,17 @@ namespace TripLog
     [TestClass]
     public class NewEntryPageViewModelTests
     {
-        private readonly Mock<ITripLogNavigation> tripLogNavigation;
-        private readonly Mock<IGeoLocationService> geoLocation;
-        private readonly Mock<ITripLogDataService> dataService;
+        private readonly Mock<ITripLogNavigation> tripLogNavigationMock;
+        private readonly Mock<IGeoLocationService> geoLocationMock;
+        private readonly Mock<ITripLogDataService> dataServiceMock;
         private readonly NewEntryPageViewModel testee;
 
         public NewEntryPageViewModelTests()
         {
-            tripLogNavigation = new Mock<ITripLogNavigation>();
-            geoLocation = new Mock<IGeoLocationService>();
-            dataService = new Mock<ITripLogDataService>();
-            testee = new NewEntryPageViewModel(tripLogNavigation.Object, geoLocation.Object, dataService.Object);
+            tripLogNavigationMock = new Mock<ITripLogNavigation>();
+            geoLocationMock = new Mock<IGeoLocationService>();
+            dataServiceMock = new Mock<ITripLogDataService>();
+            testee = new NewEntryPageViewModel(tripLogNavigationMock.Object, geoLocationMock.Object, dataServiceMock.Object);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace TripLog
         {
             // Arrange 
             var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
-            geoLocation.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
+            geoLocationMock.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
             
             // Act
             testee.Init();
@@ -38,7 +38,7 @@ namespace TripLog
             Assert.AreEqual(DateTime.Now.Date, testee.Date.Date);
             Assert.AreEqual(expectedCoordinates.Latitude, testee.Latitude);
             Assert.AreEqual(expectedCoordinates.Longitude, testee.Longitude);
-            geoLocation.Verify(m => m.GetCoordinatesAsync(), Times.Once);
+            geoLocationMock.Verify(m => m.GetCoordinatesAsync(), Times.Once);
         }
 
         [TestMethod]
@@ -46,15 +46,15 @@ namespace TripLog
         {
             // Arrange
             var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
-            geoLocation.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
+            geoLocationMock.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
             testee.Init();
 
             // Act
             testee.SaveCommand.Execute(null);
 
             // Assert
-            dataService.Verify(m => m.AddEntryAsync(It.IsAny<TripLogEntry>()), Times.Once);
-            tripLogNavigation.Verify(m => m.PopAsync(), Times.Once);
+            dataServiceMock.Verify(m => m.AddEntryAsync(It.IsAny<TripLogEntry>()), Times.Once);
+            tripLogNavigationMock.Verify(m => m.PopAsync(), Times.Once);
         }
     }
 }

@@ -8,6 +8,9 @@
     public interface ITripLogDataService
     {
         Task<IList<TripLogEntry>> ReadAllEntriesAsync();
+
         Task AddEntryAsync(TripLogEntry entry);
+
+        Task DeleteEntryAsync(TripLogEntry entry);
     }
 }

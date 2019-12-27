@@ -52,5 +52,25 @@ namespace TripLog.Server.Controllers
                     title: e.Message);
             }
         }
+
+        [HttpDelete]
+        public ActionResult<TripLogEntry> Delete(TripLogEntry entry)
+        {
+            try
+            {
+                if(_persistency.Delete(entry))
+                {
+                    return entry;
+                }
+
+                return NotFound(entry);
+            }
+            catch (Exception e)
+            {
+                return Problem(
+                    detail: e.StackTrace,
+                    title: e.Message);
+            }
+        }
     }
 }

@@ -9,13 +9,13 @@ namespace TripLog
     [TestClass]
     public class DetailPageViewModelTests
     {
-        private readonly Mock<ITripLogNavigation> tripLogNavigation;
+        private readonly Mock<ITripLogNavigation> tripLogNavigationMock;
         private readonly DetailPageViewModel testee;
 
         public DetailPageViewModelTests()
         {
-            tripLogNavigation = new Mock<ITripLogNavigation>();
-            testee = new DetailPageViewModel(tripLogNavigation.Object);
+            tripLogNavigationMock = new Mock<ITripLogNavigation>();
+            testee = new DetailPageViewModel(tripLogNavigationMock.Object);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace TripLog
             testee.BackCommand.Execute(null);
 
             // Assert
-            tripLogNavigation.Verify(m => m.PopAsync(), Times.Once);
+            tripLogNavigationMock.Verify(m => m.PopAsync(), Times.Once);
         }
     }
 }

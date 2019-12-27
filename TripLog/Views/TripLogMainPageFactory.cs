@@ -25,7 +25,7 @@ namespace TripLog.Views
             var tripLogNavigation = new TripLogNavigation(mainPage.Navigation);
             var viewFactory = new ViewFactory();
             var httpClient = new StandardAsyncHttpClient();
-            var tripLogDataService = new RestTripLogDataService(httpClient, new Uri("http://192.168.1.21:10080/Api/TripLog"));
+            var tripLogDataService = new RestTripLogDataService(httpClient, new Uri(AppSettingsManager.Settings["Service"]));
             var viewModelFactory = new ViewModelFactory(tripLogNavigation, locationService, tripLogDataService);
             var factory = new TripLogFactory(viewFactory, viewModelFactory, tripLogNavigation);
             var vm = new MainPageViewModel(factory, tripLogDataService);

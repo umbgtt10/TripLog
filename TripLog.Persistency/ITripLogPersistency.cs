@@ -8,5 +8,9 @@ namespace TripLog.Persistency
         IEnumerable<TripLogEntry> Retrieve();
 
         void Store(TripLogEntry entry);
+
+        bool Delete(TripLogEntry entry);
     }
 }
+
+

@@ -6,11 +6,18 @@
         <ToolbarItem Text="New" Command="{Binding NewCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Entries}" 
+        <ListView x:Name="list" ItemsSource="{Binding Entries}" 
                   SelectedItem="{Binding DetailSelectedItem, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Title}" Detail="{Binding Notes}"/>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Notes}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Delete"
+                                      Command="{Binding BindingContext.DeleteCommand,
+                                                        Source={x:Reference list}}"
+                                      CommandParameter="{Binding .}"/>
+                        </TextCell.ContextActions>
+                    </TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
