@@ -13,11 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripLog", "TripLog\TripLog.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripLog.Test", "TripLog.Test\TripLog.Test.csproj", "{E72FAC3F-8DD1-43C5-B40E-1C4B4B4BF9CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripLog.Persistency", "TripLog.Persistency\TripLog.Persistency.csproj", "{1A104D51-C684-49B8-93FD-20A266D858E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripLog.Persistency", "TripLog.Persistency\TripLog.Persistency.csproj", "{1A104D51-C684-49B8-93FD-20A266D858E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripLog.Persistency.Test", "TripLog.Persistency.Test\TripLog.Persistency.Test.csproj", "{BD8012FD-AB23-4CB9-9587-D870C660028A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripLog.Persistency.Test", "TripLog.Persistency.Test\TripLog.Persistency.Test.csproj", "{BD8012FD-AB23-4CB9-9587-D870C660028A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripLog.Server", "TripLog.Server\TripLog.Server.csproj", "{C03AB2F5-DF30-498F-8E24-3273189E320E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripLog.Server", "TripLog.Server\TripLog.Server.csproj", "{C03AB2F5-DF30-498F-8E24-3273189E320E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripLog.Server.Test", "TripLog.Server.Test\TripLog.Server.Test.csproj", "{E27F7762-92F7-4B6E-89FB-8EBE8920B687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -275,6 +277,30 @@ Global
 		{C03AB2F5-DF30-498F-8E24-3273189E320E}.Release|x64.Build.0 = Release|Any CPU
 		{C03AB2F5-DF30-498F-8E24-3273189E320E}.Release|x86.ActiveCfg = Release|Any CPU
 		{C03AB2F5-DF30-498F-8E24-3273189E320E}.Release|x86.Build.0 = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|x64.Build.0 = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Debug|x86.Build.0 = Debug|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|ARM.Build.0 = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|iPhone.Build.0 = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|x64.ActiveCfg = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|x64.Build.0 = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|x86.ActiveCfg = Release|Any CPU
+		{E27F7762-92F7-4B6E-89FB-8EBE8920B687}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

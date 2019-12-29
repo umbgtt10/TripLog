@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TripLog.Models;
@@ -15,10 +14,10 @@ namespace TripLog.Server.Controllers
         private readonly ILogger<TripLogController> _logger;
         private readonly ITripLogPersistency _persistency;
 
-        public TripLogController(ILogger<TripLogController> logger)
+        public TripLogController(ILogger<TripLogController> logger, ITripLogPersistency persistency)
         {
             _logger = logger;
-            _persistency = new TripLogFlatFilePersistency(new FileInfo(@"D:\Temp\persistency.prs"));
+            _persistency = persistency;
         }
 
         [HttpGet]
@@ -30,9 +29,7 @@ namespace TripLog.Server.Controllers
             }
             catch (Exception e)
             {
-                return Problem(
-                    detail: e.StackTrace,
-                    title: e.Message);
+                return StatusCode(500, e?.Message);
             }
         }
 
@@ -47,29 +44,25 @@ namespace TripLog.Server.Controllers
             }
             catch (Exception e)
             {
-                return Problem(
-                    detail: e.StackTrace,
-                    title: e.Message);
+                return StatusCode(500, e?.Message);
             }
         }
 
         [HttpDelete]
-        public ActionResult<TripLogEntry> Delete(TripLogEntry entry)
+        public ActionResult Delete(TripLogEntry entry)
         {
             try
             {
                 if(_persistency.Delete(entry))
                 {
-                    return entry;
+                    return Ok();
                 }
 
                 return NotFound(entry);
             }
             catch (Exception e)
             {
-                return Problem(
-                    detail: e.StackTrace,
-                    title: e.Message);
+                return StatusCode(500, e?.Message);
             }
         }
     }

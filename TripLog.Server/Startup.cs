@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TripLog.Persistency;
 
 namespace TripLog.Server
 {
@@ -26,6 +28,8 @@ namespace TripLog.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<ITripLogPersistency, TripLogFlatFilePersistency>(
+                (serviceProvider) => new TripLogFlatFilePersistency(new FileInfo(@"D:\Temp\persistency.prs")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
