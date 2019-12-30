@@ -153,7 +153,7 @@ namespace TripLog.ViewModels
             this.Longitude = coordinates.Longitude;
         }
 
-        private void SaveProcedure()
+        private async void SaveProcedure()
         {
             var newEntry = new TripLogEntry()
             {
@@ -165,13 +165,9 @@ namespace TripLog.ViewModels
                 Date = Date
             };
 
-            var task1 = this.tripLogDataService.AddEntryAsync(newEntry);
+            await this.tripLogDataService.AddEntryAsync(newEntry);
 
-            var task2 = this.tripLogNavigation.PopAsync();
-
-            var tasks = new Task[] { task1, task2 };
-
-            Task.WaitAll(tasks);
+            await this.tripLogNavigation.PopAsync();
         }
 
         private bool CanSaveCommandBeExecuted()

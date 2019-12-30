@@ -10,7 +10,7 @@ namespace TripLog.iOS.Services
     {
         private TaskCompletionSource<CLLocation> _locationTaskCompletion;
 
-        public async Task<Coordinates> GetCoordinatesAsync()
+        public async Task<GeoCoordinates> GetCoordinatesAsync()
         {
             var locationManager = new CLLocationManager();
             _locationTaskCompletion = new TaskCompletionSource<CLLocation>();
@@ -26,7 +26,7 @@ namespace TripLog.iOS.Services
 
             var location = await _locationTaskCompletion.Task;
 
-            var result = new Coordinates
+            var result = new GeoCoordinates
             {
                 Latitude = location.Coordinate.Latitude,
                 Longitude = location.Coordinate.Longitude

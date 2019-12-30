@@ -22,9 +22,7 @@ namespace TripLog.Views
 
         protected override void OnAppearing()
         {
-            var task = ((MainPageViewModel)BindingContext).Init();
-
-            Task.WaitAll(task);
+            ((MainPageViewModel)BindingContext).Init();
         }
     }
 }

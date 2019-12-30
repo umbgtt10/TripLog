@@ -15,7 +15,7 @@
     {
         private TaskCompletionSource<Location> _tcs;
 
-        public async Task<Coordinates> GetCoordinatesAsync()
+        public async Task<GeoCoordinates> GetCoordinatesAsync()
         {
             try
             {
@@ -27,13 +27,13 @@
 
                 var location = await _tcs.Task;
 
-                var result = new Coordinates() { Latitude = location.Latitude, Longitude = location.Longitude };
+                var result = new GeoCoordinates() { Latitude = location.Latitude, Longitude = location.Longitude };
 
                 return result;
             }
             catch (Exception e)
             {
-                return new Coordinates();
+                return new GeoCoordinates();
             }
         }
 

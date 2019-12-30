@@ -5,6 +5,6 @@ namespace TripLog.Services
 {
     public interface IGeoLocationService
     {
-        Task<Coordinates> GetCoordinatesAsync();
+        Task<GeoCoordinates> GetCoordinatesAsync();
     }
 }

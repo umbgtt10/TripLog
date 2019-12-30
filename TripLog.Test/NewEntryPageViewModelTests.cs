@@ -28,7 +28,7 @@ namespace TripLog
         public async Task Init_SetsAttributes()
         {
             // Arrange 
-            var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
+            var expectedCoordinates = new GeoCoordinates() { Latitude = 10, Longitude = 20 };
             geoLocationMock.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
             
             // Act
@@ -46,7 +46,7 @@ namespace TripLog
         public async Task SaveCommandFired_TitleSet_CallsNavigate()
         {
             // Arrange
-            var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
+            var expectedCoordinates = new GeoCoordinates() { Latitude = 10, Longitude = 20 };
             geoLocationMock.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
             await testee.Init();
 

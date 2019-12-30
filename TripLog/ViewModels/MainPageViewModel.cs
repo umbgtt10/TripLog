@@ -92,11 +92,9 @@ namespace TripLog.ViewModels
             this.factory.NavigateToNewPage();
         }
 
-        private void DeleteProcedure(TripLogEntry entry)
+        private async void DeleteProcedure(TripLogEntry entry)
         {
-            var task = this.tripLogDataService.DeleteEntryAsync(entry);
-
-            Task.WaitAll(task);
+            await this.tripLogDataService.DeleteEntryAsync(entry);
 
             Entries.Remove(entry);
         }
