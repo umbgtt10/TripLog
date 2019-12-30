@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Threading.Tasks;
 using TripLog.Models;
 using TripLog.Services;
 using TripLog.ViewModels;
@@ -24,14 +25,14 @@ namespace TripLog
         }
 
         [TestMethod]
-        public void Init_SetsAttributes()
+        public async Task Init_SetsAttributes()
         {
             // Arrange 
             var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
             geoLocationMock.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
             
             // Act
-            testee.Init();
+            await testee.Init();
 
             // Assert
             Assert.AreEqual(1, testee.Rating);
@@ -42,12 +43,12 @@ namespace TripLog
         }
 
         [TestMethod]
-        public void SaveCommandFired_TitleSet_CallsNavigate()
+        public async Task SaveCommandFired_TitleSet_CallsNavigate()
         {
             // Arrange
             var expectedCoordinates = new Coordinates() { Latitude = 10, Longitude = 20 };
             geoLocationMock.Setup(m => m.GetCoordinatesAsync()).ReturnsAsync(expectedCoordinates);
-            testee.Init();
+            await testee.Init();
 
             // Act
             testee.SaveCommand.Execute(null);

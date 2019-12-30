@@ -8,14 +8,14 @@ using TripLog.Models;
 using TripLog.Persistency;
 using TripLog.Server.Controllers;
 
-namespace TripLog.Server.Test
+namespace TripLog.Server
 {
     [TestClass]
     public class TripLogControllerTests
     {
         private readonly Mock<ILogger<TripLogController>> loggerMock;
         private readonly Mock<ITripLogPersistency> persistencyMock;
-        private TripLogController testee;
+        private readonly TripLogController testee;
 
         public TripLogControllerTests()
         {
@@ -92,7 +92,7 @@ namespace TripLog.Server.Test
         }
 
         [TestMethod]
-        public void Delete_EntryPresent_ReturnsOkResult()
+        public void Delete_EntryPresent_ReturnsOkObjectResult()
         {
             // Arrange
             var expectedEntry = new TripLogEntry() { Title = "Title" };
@@ -102,7 +102,8 @@ namespace TripLog.Server.Test
             var okResult = testee.Delete(expectedEntry);
 
             // Assert
-            Assert.IsInstanceOfType(okResult, typeof(OkResult));
+            Assert.IsInstanceOfType(okResult, typeof(OkObjectResult));
+            Assert.AreEqual(expectedEntry, ((OkObjectResult)okResult).Value);
         }
 
         [TestMethod]

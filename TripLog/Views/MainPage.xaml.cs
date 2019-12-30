@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using TripLog.ViewModels;
 using Xamarin.Forms;
 
@@ -21,7 +22,9 @@ namespace TripLog.Views
 
         protected override void OnAppearing()
         {
-            ((MainPageViewModel)BindingContext).Init();
+            var task = ((MainPageViewModel)BindingContext).Init();
+
+            Task.WaitAll(task);
         }
     }
 }

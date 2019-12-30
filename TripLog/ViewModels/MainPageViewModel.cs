@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using TripLog.Models;
 using TripLog.Services;
@@ -83,6 +84,7 @@ namespace TripLog.ViewModels
         {
             this.factory = factory;
             this.tripLogDataService = tripLogDataService;
+            Entries = new ObservableCollection<TripLogEntry>();
         }
 
         private void NewProcedure()
@@ -92,7 +94,9 @@ namespace TripLog.ViewModels
 
         private void DeleteProcedure(TripLogEntry entry)
         {
-            this.tripLogDataService.DeleteEntryAsync(entry);
+            var task = this.tripLogDataService.DeleteEntryAsync(entry);
+
+            Task.WaitAll(task);
 
             Entries.Remove(entry);
         }
@@ -102,7 +106,7 @@ namespace TripLog.ViewModels
             this.factory.NavigateToDetailPage(entry);
         }
 
-        public async void Init()
+        public async Task Init()
         {
             var entries = await this.tripLogDataService.ReadAllEntriesAsync();
 

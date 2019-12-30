@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TripLog.Models;
 using TripLog.Services;
 using Xamarin.Forms;
@@ -141,7 +142,7 @@ namespace TripLog.ViewModels
             this.tripLogDataService = tripLogDataService;
         }
 
-        public async void Init()
+        public async Task Init()
         {
             this.Date = DateTime.Now;
             this.Rating = 1;
@@ -164,9 +165,13 @@ namespace TripLog.ViewModels
                 Date = Date
             };
 
-            this.tripLogDataService.AddEntryAsync(newEntry);
+            var task1 = this.tripLogDataService.AddEntryAsync(newEntry);
 
-            this.tripLogNavigation.PopAsync();
+            var task2 = this.tripLogNavigation.PopAsync();
+
+            var tasks = new Task[] { task1, task2 };
+
+            Task.WaitAll(tasks);
         }
 
         private bool CanSaveCommandBeExecuted()

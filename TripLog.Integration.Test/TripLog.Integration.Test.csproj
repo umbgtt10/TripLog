@@ -4,8 +4,6 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <RootNamespace>TripLog.Server</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TripLog.Server\TripLog.Server.csproj" />
     <ProjectReference Include="..\TripLog\TripLog.csproj" />
   </ItemGroup>
 

@@ -30,7 +30,7 @@
             var response = await HttpClient.SendRequestAsync<TripLogEntry>(BaseUri, HttpMethod.Delete, Headers, entry);
         }
 
-        public async Task<IList<TripLogEntry>> ReadAllEntriesAsync()
+        public async Task<IEnumerable<TripLogEntry>> ReadAllEntriesAsync()
         {
             var response = await HttpClient.SendRequestAsync<TripLogEntry[]>(BaseUri, HttpMethod.Get, Headers);
             return response;

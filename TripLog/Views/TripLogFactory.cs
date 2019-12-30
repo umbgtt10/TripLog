@@ -21,12 +21,12 @@ namespace TripLog.Views
             this.navigation = navigation;
         }
 
-        public Task NavigateToNewPage()
+        public async Task NavigateToNewPage()
         {
             var vm = this.viewModelFactory.BuildNewEntryPageViewModel();
             var page = this.viewFactory.BuildNewPage(vm);
-            vm.Init();
-            return navigation.PushAsync(page);
+            await vm.Init();
+            await navigation.PushAsync(page);
         }
 
         public Task NavigateToDetailPage(TripLogEntry entry)

@@ -55,7 +55,7 @@ namespace TripLog.Server.Controllers
             {
                 if(_persistency.Delete(entry))
                 {
-                    return Ok();
+                    return Ok(entry);
                 }
 
                 return NotFound(entry);

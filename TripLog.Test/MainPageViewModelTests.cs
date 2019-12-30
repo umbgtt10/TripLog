@@ -1,6 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TripLog.Models;
 using TripLog.Services;
 using TripLog.ViewModels;
@@ -23,10 +25,13 @@ namespace TripLog
         }
 
         [TestMethod]
-        public void Init_CallsRetrieveEntries()
+        public async Task Init_CallsRetrieveEntries()
         {
-            // Arrange && Act
-            testee.Init();
+            // Arrange 
+            tripLogDataServiceMock.Setup(m => m.ReadAllEntriesAsync()).ReturnsAsync(Enumerable.Empty<TripLogEntry>());
+
+            //Act
+            await testee.Init();
 
             // Assert
             tripLogDataServiceMock.Verify(m => m.ReadAllEntriesAsync());
@@ -44,7 +49,7 @@ namespace TripLog
         }
 
         [TestMethod]
-        public void DeleteCommandFired_CallsDelete()
+        public async Task DeleteCommandFired_CallsDelete()
         {
             // Arrange
             var expectedEntry = new TripLogEntry()
@@ -52,7 +57,7 @@ namespace TripLog
                 Title = "Title",
             };
             tripLogDataServiceMock.Setup(m => m.ReadAllEntriesAsync()).ReturnsAsync(new List<TripLogEntry> { expectedEntry });
-            testee.Init();
+            await testee.Init();
 
             // Act
             testee.DeleteCommand.Execute(expectedEntry);

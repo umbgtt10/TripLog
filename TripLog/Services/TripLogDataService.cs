@@ -7,7 +7,7 @@
 
     public interface ITripLogDataService
     {
-        Task<IList<TripLogEntry>> ReadAllEntriesAsync();
+        Task<IEnumerable<TripLogEntry>> ReadAllEntriesAsync();
 
         Task AddEntryAsync(TripLogEntry entry);
 
